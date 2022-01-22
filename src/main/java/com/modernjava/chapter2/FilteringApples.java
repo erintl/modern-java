@@ -50,11 +50,13 @@ public class FilteringApples {
     System.out.println(redApples2);
 
     System.out.println("\nFilter red apples 3:");
-    List<Apple> redApples3 = filterApples(inventory, (Apple apple) -> Color.RED.equals(apple.getColor()));
+    List<Apple> redApples3 = filterApples(inventory, (Apple apple) -> 
+    Color.RED.equals(apple.getColor()));
     System.out.println(redApples3);
 
     System.out.println("\nFilter red apples 4:");
-    List<Apple> redApples4 = filter(inventory, (Apple apple) -> Color.RED.equals(apple.getColor()));
+    List<Apple> redApples4 = filter(inventory, (Apple apple) ->
+    Color.RED.equals(apple.getColor()));
     System.out.println(redApples4);
 
 
@@ -67,6 +69,12 @@ public class FilteringApples {
     });
     System.out.println(redApple5);
 
+
+    System.out.println("\nFilter red apples 6:");
+    List<Apple> redApples6 = filter(inventory, FilteringApples::isRed);
+    System.out.println(redApples6);
+
+
     System.out.println("\nFilter apples by weight 1:");
     List<Apple> heavyApples = filterApplesByWeight(inventory, 150);
     System.out.println(heavyApples);
@@ -78,6 +86,10 @@ public class FilteringApples {
     System.out.println("\nFilter even numbers:");
     List<Integer> evenNumbers = filter(numbers, (Integer i) -> i % 2 == 0);
     System.out.println(evenNumbers);
+
+    System.out.println("\nFilter even numbers 2:");
+    List<Integer> evenNumbers2 = filter(numbers, FilteringApples::isEven);
+    System.out.println(evenNumbers2);
   }
 
   public static void appleSortingExamples() {
@@ -91,7 +103,7 @@ public class FilteringApples {
       new Apple(155, Color.GREEN),
       new Apple(120, Color.RED));
     
-    System.out.println("Sort inventory: ");
+    System.out.println("\nSort inventory: ");
     inventory.sort(new Comparator<Apple>() {
       @Override
       public int compare(Apple a1, Apple a2) {
@@ -136,7 +148,7 @@ public class FilteringApples {
 
   public static List<Apple> filterApples(List<Apple> apples, ApplePredicate p) {
     List<Apple> result = new ArrayList<>();
-    for(Apple apple : apples) {
+    for (Apple apple : apples) {
       if (p.test(apple)) {
         result.add(apple);
       }
@@ -155,9 +167,14 @@ public class FilteringApples {
   }
 
   public static void prettyPrintApples(List<Apple> apples, AppleFormatter formatter) {
-    for (Apple apple : apples) {
-      String output = formatter.accept(apple);
-      System.out.println(output);
-    }
+    apples.forEach(a -> System.out.println(formatter.accept(a)));
+  }
+
+  public static boolean isRed(Apple a) {
+    return Color.RED.equals(a.getColor());
+  }
+
+  public static boolean isEven(Integer i) {
+    return i % 2 == 0;
   }
 }

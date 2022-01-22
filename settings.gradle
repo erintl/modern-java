@@ -8,4 +8,3 @@
  */
 
 rootProject.name = 'modern-java'
-include('app')
