@@ -24,6 +24,8 @@ public class Examples1 {
       })
       .limit(3)
       .collect(Collectors.toList());
+
+      System.out.println(names);
   }
 
   public static void java7LowCalorieDishes() {
