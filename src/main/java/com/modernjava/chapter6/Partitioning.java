@@ -19,7 +19,10 @@ public class Partitioning {
     System.out.println("\nVegetarian dishes partitioned by type:" + vegetarianDishesByType());
     System.out.println("\nMost caloric partitioned by vegetarian: " + mostCaloricPartitionedByVegetarian());
     System.out.println("\nIs 13 prime?: " + isPrime(13));
+
+    System.out.println("");
     System.out.println("\nPartitioning primes: " + partitionPrimes(25));
+    System.out.println("\nPartitioning primes: " + partitionPrimes2(25));
   }
 
   private static Map<Boolean, List<String>> partitionByVegetarian() {
@@ -42,9 +45,15 @@ public class Partitioning {
     return IntStream.rangeClosed(2, candidateRoot).noneMatch(i -> candidate % i == 0);
   }
 
-  private static Map<Boolean, List<Integer>> partitionPrimes(int n) {
+  public static Map<Boolean, List<Integer>> partitionPrimes(int n) {
     return IntStream.rangeClosed(2, n)
       .boxed()
       .collect(partitioningBy(Partitioning::isPrime));
+  }
+
+  public static Map<Boolean, List<Integer>> partitionPrimes2(int n) {
+    return IntStream.rangeClosed(2, n)
+    .boxed()
+    .collect(new PrimeNumbersCollector());
   }
 }

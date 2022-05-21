@@ -28,7 +28,7 @@ public class Examples {
     functionExample();
 
     // Primitive predicates
-    System.out.println("\nPrimative predicate examples:");
+    System.out.println("\nPrimitive predicate examples:");
     IntPredicate evenNumber = (int i) -> i % 2 == 0;
     System.out.println(evenNumber.test(1000));
     IntPredicate evenNumber2 = Examples::isEven;
